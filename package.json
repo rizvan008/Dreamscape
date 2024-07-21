@@ -1,0 +1,26 @@
+{
+  "name": "dreamscape",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "Rizwan",
+  "license": "ISC",
+  "description": "Dreamscape turns your home design dreams into reality, one click at a time.",
+  "dependencies": {
+    "gsap": "3.12",
+    "three": "^0.166.1",
+    "vite": "^5.3.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rizvan008/Dreamscape.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rizvan008/Dreamscape/issues"
+  },
+  "homepage": "https://github.com/rizvan008/Dreamscape#readme"
+}
