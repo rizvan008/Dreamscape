@@ -7,14 +7,14 @@
     "build": "vite build"
   },
   "keywords": [],
-  "author": "Riwzan",
+  "author": "Rizwan",
   "license": "ISC",
   "description": "Dreamscape turns your home design dreams into reality, one click at a time.",
   "dependencies": {
+    "gsap": "3.12",
     "three": "^0.166.1",
     "vite": "^5.3.4"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rizvan008/Dreamscape.git"
