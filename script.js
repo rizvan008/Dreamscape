@@ -20,7 +20,7 @@ camera.position.set(2, 4, 5);
 scene.add(camera);
 
 // **camera control behavior */
-// const control = new THREE.OrbitControls(camera,canvas);
+// const control = new OrbitControls(camera,canvas);
 // scene.add(control);
 
 // **creating 3d objects in the screen */
@@ -81,7 +81,7 @@ group.rotateY (3.14 * 1);
 console.log(group.position.distanceTo(camera.position));
 console.log(square.position.distanceTo(camera.position));
 
-console.log(square.position.normalize());
+console.log(renderer);
 console.log(cubes);
 
 //** projecting the visuals in the web page */
@@ -102,6 +102,9 @@ try {
   console.log(error);
 }
 camera.lookAt(group.position);
+
+/**gain access to the camera axis control inorder to move around */
+window.addEventListener(MouseEvent,(Event)=> {console.log('event happened')})
 
 const animate = () => {
   // group.rotateZ(Math.PI * 0.01);
