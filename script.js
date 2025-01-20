@@ -1,66 +1,14 @@
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
-import gsap from "gsap";
+import { scene } from "./scene";
+import { camera } from "./camera";
+import { cubes, group, square } from "./shapes";
+import { animate } from "./animate";
+import { control } from "./control";
 
-//**canvas for the 3d scene visuals */
-const canvas = document.querySelector("canvas.webgl");
-
-//**required size for the 3d scene in the web page */
-let size = { width: 800, height: 600 };
-
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-  60,
-  size.width / size.height,
-  1,
-  100
-);
-
-camera.position.set(2, 4, 5);
-scene.add(camera);
-
-// **camera control behavior */
-// const control = new OrbitControls(camera,canvas);
-// scene.add(control);
-
-// **creating 3d objects in the screen */
-const shape = new THREE.BoxGeometry(1, 1, 1);
-const cover = new THREE.MeshBasicMaterial({ color: "" });
-
-//**color manipulation options */
-cover.color = new THREE.Color("skyblue");
-// cover.color = new THREE.Color(0xff00ff);
-// cover.color = new THREE.Color('rgb(250,0,0)');
-// cover.color = new THREE.Color('hsl(95, 100%, 40%)');
-
-const square = new THREE.Mesh(shape, cover);
-square.material.wireframe = true;
-square.position.z = 3;
-
-//**creating required objects together */
-const cubes = [];
-
-function create(x, color, y, z) {
-    const cover1 = new THREE.MeshBasicMaterial();
-    const cube = new THREE.Mesh(shape, cover1);
-    cube.position.set(x, y, z);
-    cover1.color = new THREE.Color(color);
-    cubes.push(cube);
-    return cube;
-}
-
-//**bundling required object together */
-const group = new THREE.Group();
-
-group.add(
-  create(1.5, "red", 0.5),
-  create(-0.5, "yellow", 0),
-  create(-1.5, "green", -0.5),
-  create(0.5, "blue", 0)
-);
-
-scene.add(group, square);
 console.log(group);
+camera.position.set(5, 5, 5);
+camera.lookAt(group.position);
+
+scene.add(camera, group, square, control);
 
 // **enlarging size of objects */
 group.scale.set(1, 2, 0.5);
@@ -78,44 +26,12 @@ group.rotateY (3.14 * 1);
 //   group.quaternion.copy(quaternion);
 
 //** find the measurements in between objects */
-console.log(group.position.distanceTo(camera.position));
-console.log(square.position.distanceTo(camera.position));
+// console.log(group.position.distanceTo(camera.position));
+// console.log(square.position.distanceTo(camera.position));
 
-console.log(renderer);
-console.log(cubes);
-
-//** projecting the visuals in the web page */
-
-const renderer = new THREE.WebGLRenderer({ canvas: canvas });
-renderer.setSize(size.width, size.height);
-
-const time = new THREE.Clock();
-
-/** creating motions to objects */
-try {
-  function tick() {
-    gsap.to(group?.position, { duration: 5, delay: 1, x: 2 });
-    gsap.to(group.position, { duration: 5, delay: 3, x: 0 });
-  }
-  tick();
-} catch (error) {
-  console.log(error);
-}
-camera.lookAt(group.position);
-
+console.log(cubes[0]);
+console.log(cubes[0].geometry);
+console.log(cubes[0].material);
 /**gain access to the camera axis control inorder to move around */
-window.addEventListener(MouseEvent,(Event)=> {console.log('event happened')})
-
-const animate = () => {
-  // group.rotateZ(Math.PI * 0.01);
-  group.rotation.z+=(Math.PI * 0.01);
-  
-  const seconds = time.getElapsedTime();
-  square.position.y = Math.cos(seconds)*2;
-  square.position.x = Math.sin(seconds) * Math.cos(seconds)*2;
-  // camera.lookAt(square.position);
-  renderer.render(scene, camera);
-  window.requestAnimationFrame(animate);
-};
-
+window.addEventListener(MouseEvent, (Event) => {console.log('event happened')});
 animate();
