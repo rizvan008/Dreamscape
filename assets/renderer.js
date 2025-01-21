@@ -10,5 +10,4 @@ export const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: tru
 
 //**required size for the 3d scene in the web page */
 renderer.setSize(size.width, size.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
-console.log(renderer.setPixelRatio)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
