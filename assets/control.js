@@ -30,3 +30,4 @@ dragging.addEventListener("drag", (event) => {
   );
   console.log(`name : ${event.object.name}`);
 });
+
