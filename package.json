@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-      "test": "vite preview"
+      "preview": "vite preview"
   },
   "publishConfig": {
   "registry": "https://npm.pkg.github.com"
