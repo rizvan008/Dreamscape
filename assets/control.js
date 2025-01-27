@@ -1,17 +1,18 @@
-import { OrbitControls } from "three/examples/jsm/Addons.js";
-import { DragControls } from "three/examples/jsm/controls/DragControls.js";
-import { camera } from "./camera";
-import { canvas } from "./renderer";
+import { OrbitControls } from "three/examples/jsm/Addons.js"; // this is general location to all extras
+import { DragControls } from "three/examples/jsm/controls/DragControls.js"; // this is specific to DragControls
+import { camera } from "./camera.js";
+import { canvas } from "./renderer.js";
+import tank from "./tank.js";
 import { MathUtils } from "three";
-import tank from "./tank";
 
 // ** camera control behavior * //;
-export const control = new OrbitControls(camera, canvas);
+export const control_orbit = new OrbitControls(camera, canvas);
+control_orbit.name = "Orbit-control";
 // control.enabled = false;
-control.enableDamping = true;
-control.dampingFactor = 0.25;
-control.enableZoom = true;
-control.enableRotate = true;
+control_orbit.enableDamping = true;
+control_orbit.dampingFactor = 0.25;
+control_orbit.enableZoom = true;
+control_orbit.enableRotate = true;
 // control.autoRotate = true;
 // control.autoRotateSpeed = 0.5;
 // control.maxPolarAngle = MathUtils.degToRad(170);
@@ -19,10 +20,11 @@ control.enableRotate = true;
 // control.minDistance = 1;
 // control.maxDistance = 100;
 
-// ** Initialize DragControls * //
-export const dragging = new DragControls([tank], camera, canvas);
+// ** Initialize DragControls for picking items* //
+export const control_dragging = new DragControls([tank], camera, canvas); //change or insert new objects to be dragged
+control_dragging.name = "Drag-control";
 
-dragging.addEventListener("drag", (event) => {
+control_dragging.addEventListener("drag", (event) => {
   console.log(
     event.object.position.x,
     event.object.position.y,

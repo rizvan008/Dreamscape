@@ -4,12 +4,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "Rizwan",
   "license": "ISC",
-  "description": "Dreamscape turns your home design dreams into reality, one click at a time.",
+  "description": "Dreamscape turns your home design dreams into reality, with few clicks.",
   "dependencies": {
     "gsap": "3.12",
     "three": "^0.166.1",

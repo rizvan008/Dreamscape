@@ -1,18 +1,20 @@
-import { renderer } from "./renderer";
-import { camera } from "./camera";
-import { scene } from "./scene";
-import { control } from "./control";
-import { keyValue } from "./movements";
+import { renderer } from "./renderer.js";
+import { camera } from "./camera.js";
+import { scene } from "./scene.js";
+import { control_orbit } from "./control.js";
+import { startMovement } from "./movements.js";
 import * as THREE from "three"
+import tank from "./tank.js";
 
-export const time = new THREE.Clock();
+const time = new THREE.Clock();
 
-export const animate = () => {
+const animate = () => {
   const seconds = time.getElapsedTime();
   renderer.render(scene, camera);
-  control.update();
-  // console.table(keyValue);
+  control_orbit.update();
+  startMovement();
   window.requestAnimationFrame(animate);
-
+  
 };
 
+export default animate

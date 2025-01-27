@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { size } from "./renderer";
+import { size } from "./renderer.js";
 
 export const camera = new THREE.PerspectiveCamera(
   60,
@@ -7,3 +7,5 @@ export const camera = new THREE.PerspectiveCamera(
   1,
   100
 );
+
+camera.name = "Perspective-camera";
