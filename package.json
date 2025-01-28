@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "Dreamscape turns your home design dreams into reality, with few clicks.",
   "dependencies": {
+    "dat.gui": "^0.7.9",
     "gsap": "3.12",
     "three": "^0.166.1",
     "vite": "^5.3.4"

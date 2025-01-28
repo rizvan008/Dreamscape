@@ -9,22 +9,27 @@ import { camera } from "./camera.js";
 
 export function startMovement() {
   if (keyValue.ArrowUp) {
-    tank.position.z += (0.1);
+    tank.position.z += (-0.1);
   }
 
   if (keyValue.ArrowDown) {
-    tank.position.z += (-0.1);
+    tank.position.z += (0.1);
   }
   
+  const test = new THREE.Vector3(-1,-1,-1)
+
+  test.name = "test"
+
   if (keyValue.ArrowLeft) {
-    frontLeftTyre.rotateOnAxis(new THREE.Vector3(-1,-1,-1),3.14);
-    frontRightTyre.rotation.y += .1;
-    if (keyValue.ArrowUp || keyValue.ArrowDown) {
-      // tankLeftTurn.add(tank);
-      // tankLeftTurn.position.rotation.
-      tank.rotateOnAxis();
-      camera.lookAt(tank);
-    }
+    frontLeftTyre.rotateOnAxis( frontRightTyre.position,3.14/4);
+    // frontRightTyre.position.x = 1.5;
+    // frontRightTyre.rotateX(3.14/4);
+    // if (keyValue.ArrowUp || keyValue.ArrowDown) {
+    //   // tankLeftTurn.add(tank);
+    //   // tankLeftTurn.position.rotation.
+    //   tank.rotateOnAxis();
+    //   camera.lookAt(tank);
+    // }
     // scene.add( tankLeftTurn);
     // tank.children[1].rotation.y += .1;
     // tank.children[3].rotation.y += .1;

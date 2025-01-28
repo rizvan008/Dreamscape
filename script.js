@@ -1,12 +1,15 @@
 import * as THREE from "three";
 import { scene } from "./assets/scene.js";
 import { camera } from "./assets/camera.js";
-import animate from "./assets/animate.js";
+import animate , {display} from "./assets/animate.js";
 import tank ,{frontLeftTyre} from "./assets/tank.js";
 import { yard, containers, plane } from "./assets/containers.js";
 import { GridHelper,AxesHelper } from "./help-worker/helpers.js";
 import { startMovement, keyValue } from "./assets/movements.js";
 import { tankRightTurn } from "./tankRightTurn.js";
+import {gs_p} from "./assets/DeBug.js";
+import GSAP from "gsap";
+
 
 scene.add(camera, tank, yard, plane, AxesHelper);
 camera.position.set(10, 10, -10);
@@ -49,7 +52,7 @@ console.log(containers[0].material);
 console.log(tank );
 
 window.addEventListener("click",() =>console.log(keyValue));
-window.addEventListener("click",() =>console.log(scene));
+window.addEventListener("click",() =>console.log(display));
 camera.lookAt(frontLeftTyre);
 camera.lookAt(tank);
 animate();

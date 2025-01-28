@@ -30,6 +30,6 @@ control_dragging.addEventListener("drag", (event) => {
     event.object.position.y,
     event.object.position.z
   );
-  console.log(`name : ${event.object.name}`);
+  console.log(event.object);
 });
 

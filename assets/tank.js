@@ -14,7 +14,7 @@ const grillShape = new THREE.CapsuleGeometry(0.05, 0.7);
 const grillCover = new THREE.MeshBasicMaterial({ color: "black" });
 
 // **changing cars color */
-carCover.color = new THREE.Color("rgba(240, 224, 5, 0.5)");
+carCover.color = new THREE.Color("rgb(240, 224, 5)");
 // carCover.color = new THREE.Color('hsl(263, 83.50%, 47.60%)'); //**color manipulation options */
 
 const car = new THREE.Mesh(carShape, carCover);

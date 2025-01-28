@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-// export const CameraHelper = new THREE.CameraHelper(10);//test this
+// export const CameraHelper = new THREE.CameraHelper( camera nme );//test this
 function createName(item) {
   return item.name = `${item.type}`;
 }
@@ -13,10 +13,10 @@ createName(PlaneHelper);
 // export const BoxHelper  = new THREE.BoxHelper(10, 10, 10); //test this
 
 /**lights */
-// export const PointLightHelper = new THREE.PointLightHelper(10, 10);
-// export const DirectionalLightHelper = new THREE.DirectionalLightHelper(10, 10);
-// export const SpotLightHelper = new THREE.SpotLightHelper(10, 10); //test this
-// export const HemisphereLightHelper = new THREE.HemisphereLightHelper(10, 10);
+// export const PointLightHelper = new THREE.PointLightHelper(light nme);
+// export const DirectionalLightHelper = new THREE.DirectionalLightHelper(light nme);
+// export const SpotLightHelper = new THREE.SpotLightHelper(light nme); //test this
+// export const HemisphereLightHelper = new THREE.HemisphereLightHelper(light nme);
 
 // export const ArrowHelper = new THREE.ArrowHelper(10); //test this
 // // export const EdgesHelper = new THREE.EdgesHelper(10); //test this
