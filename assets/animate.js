@@ -7,25 +7,26 @@ import * as THREE from "three"
 import tank from "./tank.js";
 
 const time = new THREE.Clock();
-export let display = {visualViewport: window.visualViewport};
-window.visualViewport.onresize = ()=>{
-  display.scrollWidth = (window.document.body.scrollWidth);
-  display.scrollHeight = (window.document.body.scrollHeight);
-  display.clientWidth = (window.document.body.clientWidth);
-  display.clientHeight = (window.document.body.clientHeight);
-  display.scrollY = (window.document.body.scrollY);
-  display.screen = (window.screen);
-  display.innerHeight = (window.innerHeight);
-  display.innerWidth = (window.innerWidth);
+const displayC = {};
+export let display = window.visualViewport;
 
+visualViewport.onresize = ()=>{
+  displayC.scrollWidth = (window.document.body.scrollWidth);
+  displayC.scrollHeight = (window.document.body.scrollHeight);
+  displayC.clientWidth = (window.document.body.clientWidth);
+  displayC.clientHeight = (window.document.body.clientHeight);
+  displayC.scrollY = (window.document.body.scrollY);
+  displayC.screen = (window.screen);
+  displayC.innerHeight = (window.innerHeight);
+  displayC.innerWidth = (window.innerWidth);
 }
+
 const animate = () => {
   const seconds = time.getElapsedTime();
-  renderer.render(scene, camera);
-  control_orbit.update();
-  startMovement();
+  console.log('seconds: ', seconds);
   window.requestAnimationFrame(animate);
-  
+  control_orbit.update();
+  renderer.render(scene, camera);
 };
 
 export default animate

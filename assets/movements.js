@@ -5,24 +5,27 @@ import { scene } from "./scene.js";
 
 import * as THREE from "three";
 import { camera } from "./camera.js";
-// window.addEventListener( "mousemove", (Event) => {console.log('event happened')});
 
-export function startMovement() {
-  if (keyValue.ArrowUp) {
+export function startMovement(value) {
+  if (value == 'ArrowUp') {
     tank.position.z += (-0.1);
+    
   }
 
-  if (keyValue.ArrowDown) {
+  if (value == 'ArrowDown') {
     tank.position.z += (0.1);
+    
   }
   
-  const test = new THREE.Vector3(-1,-1,-1)
-
+  const test = tank.position.clone();
+  const test2 = tank.rotation.clone();
+  console.log('test2: ', test2);
   test.name = "test"
 
-  if (keyValue.ArrowLeft) {
-    frontLeftTyre.rotateOnAxis( frontRightTyre.position,3.14/4);
-    // frontRightTyre.position.x = 1.5;
+  if (value == 'ArrowLeft') {
+    
+    frontRightTyre.rotation.y = (3.14/4);
+    frontLeftTyre.rotation.y = (3.14/4);
     // frontRightTyre.rotateX(3.14/4);
     // if (keyValue.ArrowUp || keyValue.ArrowDown) {
     //   // tankLeftTurn.add(tank);
@@ -35,13 +38,13 @@ export function startMovement() {
     // tank.children[3].rotation.y += .1;
     
   }
-  if (keyValue.ArrowRight) {
+  if (value == 'ArrowRight') {
     tankRightTurn.add(tank);
     // scene.add( tankRightTurn);
-    tank.children[1].rotation.y -= .1;
-    tank.children[3].rotation.y -= .1;
+    tank.children[1].rotation.y = 3.14/4;
+    tank.children[3].rotation.y = 3.14/4;
   }
-  if (keyValue.Space) {//testing Space key , add jumpUp function.
+  if (value == ' ') {//testing Space key , add jumpUp function.
     console.log("jumping");
     // tank.position.y += 0.1;
   }

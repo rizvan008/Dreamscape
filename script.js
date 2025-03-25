@@ -15,12 +15,13 @@ scene.add(camera, tank, yard, plane, AxesHelper);
 camera.position.set(10, 10, -10);
 // scene.add(GridHelper,);
 
-tank.position.setY(1)
+tank.position.set(0,1,-1)
 
 scene.add( tankRightTurn);
-
-
-tank.add(new THREE.AxesHelper(3));
+tankRightTurn.position.set(0,0,-1); 
+const tankRightTurnHelp = new THREE.AxesHelper(3);
+tankRightTurnHelp.name="tankRightTurn help";
+tank.add(tankRightTurnHelp);
 // tankRightTurn.add(new THREE.AxesHelper(3));
 // tankLeftTurn.add(new THREE.AxesHelper(3));
 
@@ -44,15 +45,16 @@ yard.rotateY (3.14 * 1); //180 degrees
 // console.log(group.position.distanceTo(camera.position));
 // console.log(square.position.distanceTo(camera.position));
 
-// startMovement(); // calling the function to start the movement of the tank - done in the animate.js file
-
+//* * calling the function to start the movement of the tank /
+document.onkeydown = (event) => startMovement(event.key);
 console.log(scene);
 console.log(containers[0].geometry);
 console.log(containers[0].material);
 console.log(tank );
 
 window.addEventListener("click",() =>console.log(keyValue));
-window.addEventListener("click",() =>console.log(display));
+
 camera.lookAt(frontLeftTyre);
 camera.lookAt(tank);
+turboConsoleLog.correctAllLogMessages
 animate();
