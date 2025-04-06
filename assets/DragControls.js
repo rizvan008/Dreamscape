@@ -26,9 +26,9 @@ control_dragging.name = "Drag-control";
 
 control_dragging.addEventListener("drag", (event) => {
   console.log(
-    event.object.position.x,
-    event.object.position.y,
-    event.object.position.z
+    "x : ", event.object.position.x,
+   "y : ", event.object.position.y,
+    "z : ", event.object.position.z
   );
   console.log(event.object);
 });
