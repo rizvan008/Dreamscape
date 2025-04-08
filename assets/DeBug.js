@@ -1,4 +1,4 @@
-import tank from "./tank.js";
+import tank,{frontRightTyre, frontLeftTyre} from "./tank.js";
 import { yard, containers, plane } from "./containers.js"
 import GSAP from "gsap";
 import * as dat from "dat.gui";

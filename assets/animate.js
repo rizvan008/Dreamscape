@@ -1,15 +1,17 @@
 import { renderer } from "./renderer.js";
 import { camera } from "./camera.js";
 import { scene } from "./scene.js";
-import { control_orbit } from "./DragControls.js";
-import { startMovement } from "./tank_controls.js";
+import { control_orbit } from "./cameraControls.js";
+import { startMovement } from "./tankControls.js";
 import * as THREE from "three"
 import tank from "./tank.js";
 
 const time = new THREE.Clock();
-const displayC = {scrollWidth: 0,
-  scrollHeight: 0,};
+
+export const displayC = { scrollWidth: 0, scrollHeight: 0 };
+
 export let display = window.visualViewport;
+
 let resizeTimeout;
 
 visualViewport.onresize = ()=>{
@@ -29,7 +31,6 @@ visualViewport.onresize = ()=>{
   displayC.scrollHeight = (document.body.scrollHeight);
   displayC.clientWidth = (document.body.clientWidth);
   displayC.clientHeight = (document.body.clientHeight);
-  // displayC.scrollY = (document.body.scrollY);
   displayC.scrollY = (window.scrollY);
   displayC.scrollX= (window.scrollX);
   displayC.screen = (window.screen);
@@ -47,6 +48,7 @@ const animate = () => {
   window.requestAnimationFrame(animate);
   control_orbit.update();
   renderer.render(scene, camera);
+  // renderer.setAnimationLoop(animate) // test this for the animation loop
 };
 
 export default animate

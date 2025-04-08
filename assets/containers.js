@@ -1,14 +1,14 @@
 import * as THREE from "three";
 
+//place to store the containers
+export const yard = new THREE.Group();
+yard.name = "yard";
+
 //**creating containers */
 export const containers = [];
 
 const containerShape = new THREE.BoxGeometry(1, 1, 3);
 const containerCover = new THREE.MeshBasicMaterial({ color: "red", wireframe: false, transparent: false, opacity: 0.5, side: THREE.DoubleSide, depthTest: true, depthWrite: true });
-
-//place to store the containers
-export const yard = new THREE.Group();
-yard.name = "yard";
 
 // //overriding name for each container in the array******
 // containers.map((e, i) => { e.name = "container" + i });

@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-// export const CameraHelper = new THREE.CameraHelper( camera nme );//test this
+// export const CameraHelper = new THREE.CameraHelper( camera name );//test this
 function createName(item) {
   return item.name = `${item.type}`;
 }

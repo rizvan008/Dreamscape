@@ -1,16 +1,11 @@
 import tank,{frontRightTyre, frontLeftTyre} from "./tank.js";
-
-import { tankLeftTurn, tankRightTurn } from "../tankRightTurn.js";
-import { scene } from "./scene.js";
-
-import * as THREE from "three";
 import { camera } from "./camera.js";
 
 // Improved Tank Movement Controller
 const tankControls = {
     speed: 0.1,
-    turnSpeed: Math.PI / 16, // Slower, more realistic turning
-    wheelMaxTurn: Math.PI / 4, // 45 degrees max wheel turn
+    turnSpeed: Math.PI / 64, // Slower, more realistic turning
+    wheelMaxTurn: Math.PI / 6, // 30 degrees max wheel turn
     currentWheelAngle: 0,
     movingForward: false,
     movingBackward: false,
@@ -38,12 +33,10 @@ const tankControls = {
     if (tankControls.turningLeft && (tankControls.movingForward || tankControls.movingBackward)) {
       const turnDirection = tankControls.movingForward ? 1 : -1;
       tank.rotation.y += tankControls.turnSpeed * turnDirection;
-      // moveTank(tankControls.speed); // Move while turning
     }
     if (tankControls.turningRight && (tankControls.movingForward || tankControls.movingBackward)) {
       const turnDirection = tankControls.movingForward ? 1 : -1;
       tank.rotation.y -= tankControls.turnSpeed * turnDirection;
-      // moveTank(tankControls.speed); // Move while turning
     }
   
     // Wheel Animation
@@ -55,8 +48,8 @@ const tankControls = {
     } 
     else {
       // Return wheels to center when not turning
-      tankControls.currentWheelAngle *= 0;
-      if (Math.abs(tankControls.currentWheelAngle) < 0) {
+      tankControls.currentWheelAngle *= 0.09;
+      if (Math.abs(tankControls.currentWheelAngle) < 0.01) {
         tankControls.currentWheelAngle = 0;
       }
     }
@@ -68,6 +61,7 @@ const tankControls = {
     // Update camera to follow tank
     // camera.position.x = tank.position.x;
     // camera.position.z = tank.position.z + 5;
+  
     // camera.lookAt(tank.position);
   }
   
