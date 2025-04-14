@@ -64,7 +64,7 @@ function init(){
 }
 
 function animate (){
-    renderer.SetAnimationLoop(
+    renderer.setAnimationLoop(
         () => {
             
             renderer.render(scene, camera);
