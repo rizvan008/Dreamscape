@@ -18,6 +18,7 @@ carCover.color = new THREE.Color("rgb(240, 224, 5)");
 // carCover.color = new THREE.Color('hsl(263, 83.50%, 47.60%)'); //**color manipulation options */
 
 const car = new THREE.Mesh(carShape, carCover);
+// car.position.set( car.geometry.parameters.width/2, 0, 0 ) // moving its geometric center to end
 car.name = "tank-body";
 
 //**create tyres & numbering it */
@@ -33,7 +34,7 @@ const createTyre = (x = 0, y = 0, z = 0) => {
 };
 
 //**create front grills & numbering it */
-function createGrill( x= -0.01, y= 0.05, z= -1.5 ) { // need to provide dependent position for car body
+function createGrill( x= car.position.x + -0.01, y= car.position.y + 0.05, z= car.position.z + -1.5 ) { // need to provide dependent position for car body
   const grill = new THREE.Mesh(grillShape, grillCover);
   grill.name = "Grill";
   frontGrill.position.set( x, y, z );
@@ -137,9 +138,9 @@ tank.add(
   leftHeadLight
 );
 
-// frontLeftTyre.add(new THREE.AxesHelper(3));
-// frontRightTyre.add(new THREE.AxesHelper(3));
-backTyre.add(new THREE.AxesHelper(3));
-frontGrill.add(new THREE.AxesHelper(3));
+frontLeftTyre.add(new THREE.AxesHelper(3));
+frontRightTyre.add(new THREE.AxesHelper(3));
+// backTyre.add(new THREE.AxesHelper(3));
+// frontGrill.add(new THREE.AxesHelper(3));
 
 export default tank;

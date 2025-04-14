@@ -1,8 +1,8 @@
 import { renderer } from "./renderer.js";
-import { camera } from "./camera.js";
+import { camera, debug_camera } from "./camera.js";
 import { scene } from "./scene.js";
 import { control_orbit } from "./cameraControls.js";
-import { startMovement } from "./tankControls.js";
+import { startMovement } from "./tank-Controls.js";
 import * as THREE from "three"
 import tank from "./tank.js";
 
@@ -45,10 +45,11 @@ const animate = () => {
   const seconds = time.getElapsedTime();
   // console.log('seconds: ', seconds);
   startMovement();
-  window.requestAnimationFrame(animate);
+  // window.requestAnimationFrame(animate);
   control_orbit.update();
+  // renderer.render(scene, debug_camera);
   renderer.render(scene, camera);
-  // renderer.setAnimationLoop(animate) // test this for the animation loop
+  renderer.setAnimationLoop(animate) // test this for the animation loop
 };
 
 export default animate

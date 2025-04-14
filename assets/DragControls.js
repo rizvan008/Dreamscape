@@ -1,10 +1,10 @@
 import { DragControls } from "three/examples/jsm/controls/DragControls.js"; // this is specific to DragControls
-import { camera } from "./camera.js";
+import { debug_camera } from "./camera.js";
 import { canvas } from "./renderer.js";
 import tank from "./tank.js";
 
 // ** Initialize DragControls for picking items* //
-export const control_dragging = new DragControls([tank], camera, canvas); //change or insert new objects to be dragged
+export const control_dragging = new DragControls([tank], debug_camera, canvas); //change or insert new objects to be dragged
 control_dragging.name = "Drag-control";
 
 control_dragging.addEventListener("drag", (event) => {

@@ -4,7 +4,7 @@ import { camera } from "./camera.js";
 // Improved Tank Movement Controller
 const tankControls = {
     speed: 0.1,
-    turnSpeed: Math.PI / 64, // Slower, more realistic turning
+    turnSpeed: Math.PI / 64, // 0.05 Slower, more realistic turning
     wheelMaxTurn: Math.PI / 6, // 30 degrees max wheel turn
     currentWheelAngle: 0,
     movingForward: false,
