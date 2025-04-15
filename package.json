@@ -13,10 +13,13 @@
   "license": "ISC",
   "description": "Dreamscape turns your home design dreams into reality, with few clicks.",
   "dependencies": {
+    "@types/three": "^0.175.0",
+    "@vercel/speed-insights": "^1.2.0",
     "dat.gui": "^0.7.9",
     "gsap": "3.12",
     "three": "^0.166.1",
-    "vite": "^5.3.4"
+    "vite": "^5.3.4",
+    "vite-plugin-mkcert": "^1.17.8"
   },
   "repository": {
     "type": "git",

@@ -9,6 +9,7 @@ import { GridHelper,AxesHelper } from "./help-worker/helpers.js";
 import {gs_p} from "./assets/DeBug.js";
 import GSAP from "gsap";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 scene.add(camera, tank, yard, plane, AxesHelper, debug_camera);
 // debug_camera.position.set(10, 10, -10);
