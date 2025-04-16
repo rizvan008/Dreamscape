@@ -49,16 +49,16 @@ function init(){
     // tap to place integration
     controller = renderer.xr.getController(0);
     controller.addEventListener('select', (e) => {
-    if(cube.visible) return; // avoid placing multiple cubes
-    cube.position.copy(controller.position);
-    cube.quaternion.copy(controller.quaternion);
-    cube.visible = true;
+    // if(cube.visible) return; // avoid placing multiple cubes
+    // cube.position.copy(controller.position);
+    // cube.quaternion.copy(controller.quaternion);
+    // cube.visible = true;
 
-    // if(model && !model.visible) {
-    //     model.position.copy(controller.position);
-    //     model.quaternion.copy(controller.quaternion);
-    //     model.visible =true;
-    // }
+    if(model && !model.visible) {
+        model.position.copy(controller.position);
+        model.quaternion.copy(controller.quaternion);
+        model.visible =true;
+    }
 
     });
 }

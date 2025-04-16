@@ -2,6 +2,7 @@ node_modules
 dist
 localhost-key.pem
 localhost.pem
+vite.config.js
 
 # assets/**/src/*
 # assets/**/texture/*
