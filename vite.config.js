@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+// import { defineConfig } from 'vite';
 // import basicSsl from '@vitejs/plugin-basic-ssl';
 
 // export default defineConfig({
@@ -10,17 +10,17 @@ import { defineConfig } from 'vite';
 // });
 
 // import { defineConfig } from 'vite';
-import fs from 'fs';
+// import fs from 'fs';
 
-export default defineConfig({
-  server: {
-    https: {
-      key: fs.readFileSync('localhost-key.pem'),
-      cert: fs.readFileSync('localhost.pem'),
-    },
-    host: true, // Enable LAN access for mobile testing
-  }
-});
+// export default defineConfig({
+//   server: {
+//     https: {
+//       key: fs.readFileSync('localhost-key.pem'),
+//       cert: fs.readFileSync('localhost.pem'),
+//     },
+//     host: true, // Enable LAN access for mobile testing
+//   }
+// });
 
 
 // import { defineConfig } from 'vite'
