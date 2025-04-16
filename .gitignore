@@ -1,6 +1,7 @@
 node_modules
 dist
-
+localhost-key.pem
+localhost.pem
 
 # assets/**/src/*
 # assets/**/texture/*
