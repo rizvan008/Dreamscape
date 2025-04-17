@@ -58,6 +58,7 @@ function init(){
     // tap to place integration
     controller = renderer.xr.getController(0);
     controller.addEventListener('select', (e) => {
+<<<<<<< HEAD
     // if(cube.visible) return; // avoid placing multiple cubes
     // cube.position.copy(controller.position);
     // cube.quaternion.copy(controller.quaternion);
@@ -81,6 +82,18 @@ function init(){
                 // light.castShadow = true; // enable shadow casting
         
     }
+=======
+   // if(cube.visible) return; // avoid placing multiple cubes
+    //cube.position.copy(controller.position);
+  //  cube.quaternion.copy(controller.quaternion);
+  //  cube.visible = true;
+
+    if(model && !model.visible) {
+         model.position.copy(controller.position);
+         model.quaternion.copy(controller.quaternion);
+        model.visible =true;
+     }
+>>>>>>> defdf975c9a2944f8d5d96aa0ad3e179eccc39e0
 
     });
 }
