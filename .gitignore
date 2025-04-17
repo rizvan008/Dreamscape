@@ -3,6 +3,7 @@ dist
 localhost-key.pem
 localhost.pem
 vite.config.js
+vite.config
 
 # assets/**/src/*
 # assets/**/texture/*
