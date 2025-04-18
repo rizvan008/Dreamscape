@@ -11,13 +11,12 @@ export const camera = new THREE.PerspectiveCamera(
 
 camera.name = "Perspective-camera";
 
-export const debug_camera = new THREE.PerspectiveCamera(
-  60,
-  size.width / size.height,//size from render.js
+export const debug_camera = new THREE.OrthographicCamera(
+  80, 80, 50, 50,
   1,
   100
 );
 
-debug_camera.name = "Perspective-debug_camera";
+debug_camera.name = "OrthographicCamera-debug_camera";
 // debug_camera.position.set(camera.position.clone())
 debug_camera.lookAt(0,0,0)

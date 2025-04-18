@@ -1,21 +1,32 @@
 import tank,{frontRightTyre, frontLeftTyre} from "./tank.js";
 import * as THREE from "three";
-let steer = 0; // Initial steering angle
-let maxSteer = Math.PI / 6; // 0.5235 Maximum steering angle (30 degrees in radians)
+
+let steeringAngle = 0; // Initial steering angle
+let maxSteering = Math.PI / 6; // 0.5235 Maximum steering angle (30 degrees in radians)
+let radiant = Math.PI / 180; // 0.01744 Radian to degree conversion factor
+let steerSpeed = 0.3; //  steer till angle 33^ [ (0.3 / 0.5235) / 0.01744 ] = 33^  here 0.01744 radiant is one degree angle
+let steerLeft = steeringAngle;
+let steerRight = steeringAngle;
+// let wheelTurnAngle = 0
+
 let leftTurn = false; 
 let rightTurn = false;
 let forward = false;
 let backward = false;
-let steerLeft = steer;
-let steerRight = steer;
 let tankSpeed = 0.1; // Speed of the tank
 
-document.addEventListener("keydown", (event) => {
-  event.code == "ArrowLeft" ? leftTurn = true : 
-  event.code == "ArrowRight" ? rightTurn = true :
-  event.code == "ArrowUp" ? forward = true :
-  event.code == "ArrowDown" ? backward = true : backward = false;
-});
+
+// document.addEventListener("keydown", (event) => {
+//   event.code == "ArrowLeft" 
+//   ? leftTurn = true 
+//   : event.code == "ArrowRight" 
+//   ? rightTurn = true 
+//   : event.code == "ArrowUp" 
+//   ? forward = true 
+//   : event.code == "ArrowDown" 
+//   ? backward = true : console.log('keydown-code: ', event.code);
+// });
+
 // document.addEventListener("keydown", (event) => {
 //   event.code == "ArrowLeft" ? leftTurn = true : leftTurn = false;
 //   event.code == "ArrowRight" ? rightTurn = true : rightTurn = false;
@@ -23,13 +34,15 @@ document.addEventListener("keydown", (event) => {
 //   event.code == "ArrowDown" ? backward = true : backward = false;
 // });
 
-// Reset the steering angle when key is released
-document.addEventListener("keyup", (event) => {
-  if(event.code == "ArrowLeft") leftTurn = false;  
-  else if(event.code == "ArrowRight") rightTurn = false;
-  else if(event.code == "ArrowUp") forward = false;
-  else if(event.code == "ArrowDown") backward = false;
-});
+// Resetting the steering angle when key is released
+// document.addEventListener("keyup", (event) => {
+//   if(event.code == "ArrowLeft") leftTurn = false;  
+//   else if(event.code == "ArrowRight") rightTurn = false;
+//   else if(event.code == "ArrowUp") forward = false;
+//   else if(event.code == "ArrowDown") backward = false;
+//   else console.log('keyup.code: ', event.code);
+// });
+
 // document.addEventListener("keyup", (event) => {
 //   if(event.code == "ArrowLeft") leftTurn = false;  
 //   if(event.code == "ArrowRight") rightTurn = false;
@@ -38,65 +51,67 @@ document.addEventListener("keyup", (event) => {
 // });
 
 // Function to turn the steering based on the steering angle
-function turnSteering ( steer, turnAngle = 0 ){
-  turnAngle =  Math.sin(steer); // Calculate the turn angle based on the steering angle
-  frontLeftTyre.rotation.y = turnAngle; // Rotate the left wheel
-  frontRightTyre.rotation.y = turnAngle; // Rotate the right wheel
+function turnSteeringWheel ( steeringAngle, wheelTurnAngle = 0 ){
+  //wheel turning slowly at start and then become faster
+  let angularMoment =    steerSpeed / Math.tan(steeringAngle)
+  wheelTurnAngle =  Math.sin(angularMoment); // Calculate the wheelTurn angle (0^ to 30^) based on the steering angle from 0 to PI/2  45^ or less
+  frontLeftTyre.rotation.y = wheelTurnAngle; // Rotate the left wheel
+  frontRightTyre.rotation.y = wheelTurnAngle; // Rotate the right wheel
 }
 
 export function startMovement() {
   // Update the tank position based on the steering angle and movement direction
   if(forward){
     if (steerLeft || steerRight) {
-      // Rotate the tank body based on the steering angle
-      let direction = new THREE.Vector3(Math.sin(steer), 0, Math.cos(steer));
+      // move the tank body based on the steering angle
+      let direction = new THREE.Vector3(Math.sin(steeringAngle), 0, Math.cos(steeringAngle)); // Calculate the direction vector based on the steering angle
+      direction.normalize(); // Normalize the direction vector
       tank.position.add(direction.multiplyScalar(tankSpeed));
       // Rotate the tank body
-      
-      console.log('test f: ');
+      tank.rotation.y = steeringAngle; // Rotate the tank body based on the steering angle *** check if need Math.Sin(steerSpeed / Math.tan(steeringAngle)) or not
+      console.log('tank body rotates : F');
     }
-    tank.position.x -= Math.sin(steer) * 0.1; // Move forward based on the steering angle
-    tank.position.z -= Math.cos(steer) * 0.1; // Move forward based on the steering angle
+
+    tank.position.x -= Math.sin(steeringAngle) * tankSpeed; // Move forward based on the steering angle
+    tank.position.z -= Math.cos(steeringAngle) * tankSpeed; // Move forward based on the steering angle
   }
   
   if(backward){
     if (steerLeft || steerRight) {
       // Rotate the tank body based on the steering angle
-      tank.rotation.y -= Math.sin(steer) * 0.1; // Rotate the tank body
-      console.log('test B: ');
+      tank.rotation.y -= Math.sin(steeringAngle) ; // Rotate the tank body *** check if need Math.Sin(steerSpeed / Math.tan(steeringAngle)) or not
+      console.log('tank body rotates: B');
       
     }
-    tank.position.z += Math.cos(steer) * 0.1; // Move backward based on the steering angle
-    tank.position.x += Math.sin(steer) * 0.1; // Move backward based on the steering angle
+    tank.position.z += Math.cos(steeringAngle) * tankSpeed; // Move backward based on the steering angle
+    tank.position.x += Math.sin(steeringAngle) * tankSpeed; // Move backward based on the steering angle
   }
-  // If the tank is turning left or right, set the angle to maxSteer or -maxSteer
+  // If the tank is turning left or right, set the angle to maxSteering or negative maxSteering
   if(leftTurn) {
     // let steerLeft = steer;
-    steerLeft = Math.min(steerLeft + 0.01, maxSteer); // Increment the angle
-    steer = steerLeft; // Update the steering angle
-    turnSteering ( steerLeft );
+    steerLeft = Math.min(steerLeft + radiant, maxSteering); // Increment the angle
+    steeringAngle = steerLeft; // Update the steering angle
+    turnSteeringWheel ( steerLeft );
   }
   if(rightTurn) {
     // let steerRight = steer;
-    steerRight = Math.max(steerRight - 0.01, - maxSteer); // decrement the angle
-    steer = steerRight; // Update the steering angle
-    turnSteering ( steerRight );
+    steerRight = Math.max(steerRight - radiant, - maxSteering); // decrement the angle
+    steeringAngle = steerRight; // Update the steering angle
+    turnSteeringWheel ( steerRight );
   }
-  if (leftTurn || rightTurn) {
+  if(!leftTurn && !rightTurn) {
+    // Gradually reduce the steering angle when no key is pressed
 
-    
-  }
-  else {
-    if (steer > 0){
-      steer = Math.max(steer - 0.01744, 0);
+    if (steeringAngle < 0){
+      steeringAngle = Math.min(steeringAngle + 0.01744, 0);
     }
-    if (steer < 0){
-      steer = Math.min(steer + 0.01744, 0);
+      else if (steeringAngle > 0){
+      steeringAngle = Math.max(steeringAngle - 0.01744, 0);
     }
     // Reset the steering angle when no key is pressed
-    steerLeft = steer; 
-    steerRight = steer;
-    turnSteering(steer); // Reset the steering angle when no key is pressed
+    steerLeft = steeringAngle; 
+    steerRight = steeringAngle;
+    turnSteeringWheel (steeringAngle); // Reset the steering angle when no key is pressed
   }
 }
 
@@ -121,8 +136,8 @@ export function startMovement() {
 /**
  key press actions captured by the event listener
  wheel turning left or right
- set maxSteerAngle to the left or right
- initial angle is 0 then increment or decrement the angle by the maxSteerAngle
+ set maxSteeringAngle to the left or right
+ initial angle is 0 then increment or decrement the angle by the maxSteeringAngle
  given rotations to the wheels
 
  forward and backward movement
