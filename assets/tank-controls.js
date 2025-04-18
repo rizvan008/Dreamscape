@@ -14,7 +14,7 @@ document.addEventListener("keydown", (event) => {
   event.code == "ArrowLeft" ? leftTurn = true : 
   event.code == "ArrowRight" ? rightTurn = true :
   event.code == "ArrowUp" ? forward = true :
-  event.code == "ArrowDown" ? backward = true : backward = false;
+  event.code == "ArrowDown" ? backward = true :  console.log('keydown: ', event.code);
 });
 // document.addEventListener("keydown", (event) => {
 //   event.code == "ArrowLeft" ? leftTurn = true : leftTurn = false;

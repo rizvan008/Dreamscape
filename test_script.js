@@ -1,5 +1,5 @@
-import * as THREE from "./node_modules/three/build/three.module";
-
+// import * as THREE from "./node_modules/three/build/three.module";
+import * as THREE from 'three' ;
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 // import {ARButton} from 'three/examples/jsm/webxr/ARButton.js';
 import {ARButton} from "./node_modules/three/examples/jsm/webxr/ARButton.js";
@@ -48,6 +48,8 @@ function init(){
             model = gltf.scene;
             model.scale.set(0.1, 0.1, 0.1);
             model.visible = false;
+            console.log('model: ', model);
+            // model.scale.set(4, 4, 4); // scale the LoadingSpinner model to fit the scene
             scene.add(model);
         },
         undefined,
@@ -55,31 +57,31 @@ function init(){
             console.error('error loading model :', error);
         }
     )
-
+    
     // tap to place integration
     controller = renderer.xr.getController(0);
     controller.addEventListener('select', (e) => {
-    // if(cube.visible) return; // avoid placing multiple cubes
-    // cube.position.copy(controller.position);
-    // cube.quaternion.copy(controller.quaternion);
-    // cube.visible = true;
-
-    if(model && !model.visible) {
-        model.position.copy(controller.position);
-        model.quaternion.copy(controller.quaternion);
-        model.visible =true;
-        light.position.copy(model.position).add(new THREE.Vector3(3, 3, 3));
-        sportlight.position.add(model.position).add(new THREE.Vector3(-1, 1, 0));
-        // sportlight.target = model; // set light target to the model
-        sportlight.castShadow = true; // enable shadow casting
-        let sportlight1 = sportlight.clone().position.copy(model.position).add(new THREE.Vector3(0, 2, 0));
-        let sportlight2 = sportlight.clone().position.copy(model.position).add(new THREE.Vector3(0, -2, 0));
-        pointlight.position.clone(model.position).add(new THREE.Vector3(0, 2, 0));
-        light.target = model; // set light target to the model
-        light.castShadow = true; // enable shadow casting
-        scene.add(light.target); // add light target to the scene
-        scene.add(sportlight, sportlight1, sportlight2); // add light to the scene
-                // light.castShadow = true; // enable shadow casting
+        // if(cube.visible) return; // avoid placing multiple cubes
+        // cube.position.copy(controller.position);
+        // cube.quaternion.copy(controller.quaternion);
+        // cube.visible = true;
+        
+        if(model && !model.visible) {
+            model.position.copy(controller.position).add(new THREE.Vector3(0, 0, -0.2)); // set position of the model
+            model.quaternion.copy(controller.quaternion);
+            model.visible =true;
+            light.position.copy(model.position).add(new THREE.Vector3(3, 3, 3));
+            sportlight.position.add(model.position).add(new THREE.Vector3(-1, 1, 0));
+            // sportlight.target = model; // set light target to the model
+            sportlight.castShadow = true; // enable shadow casting
+            let sportlight1 = sportlight.clone().position.copy(model.position).add(new THREE.Vector3(0, 2, 0));
+            let sportlight2 = sportlight.clone().position.copy(model.position).add(new THREE.Vector3(0, -2, 0));
+            pointlight.position.clone(model.position).add(new THREE.Vector3(0, 2, 0));
+            light.target = model; // set light target to the model
+            light.castShadow = true; // enable shadow casting
+            scene.add(light.target); // add light target to the scene
+            scene.add(sportlight, sportlight1, sportlight2); // add light to the scene
+            // light.castShadow = true; // enable shadow casting
         
     }
 
@@ -87,14 +89,7 @@ function init(){
     //cube.position.copy(controller.position);
   //  cube.quaternion.copy(controller.quaternion);
   //  cube.visible = true;
-
-    if(model && !model.visible) {
-         model.position.copy(controller.position);
-         model.quaternion.copy(controller.quaternion);
-        model.visible =true;
-     }
-
-    });
+});
 }
 
 function animate (){
