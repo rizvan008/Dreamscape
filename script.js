@@ -10,6 +10,10 @@ import {gs_p} from "./assets/DeBug.js";
 import GSAP from "gsap";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { injectSpeedInsights } from "@vercel/speed-insights";
+// injectSpeedInsights({
+//   projectId: "your-project-id",
+//   token
 
 scene.add(camera, tank, yard, plane, AxesHelper, debug_camera);
 // debug_camera.position.set(10, 10, -10);

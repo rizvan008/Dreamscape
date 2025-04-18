@@ -43,6 +43,7 @@ function init(){
 
     loader.load(
         'assets/DamagedHelmet.glb',
+        // 'assets/LoadingSpinner.glb',
         (gltf) => {
             model = gltf.scene;
             model.scale.set(0.1, 0.1, 0.1);
@@ -58,7 +59,6 @@ function init(){
     // tap to place integration
     controller = renderer.xr.getController(0);
     controller.addEventListener('select', (e) => {
-<<<<<<< HEAD
     // if(cube.visible) return; // avoid placing multiple cubes
     // cube.position.copy(controller.position);
     // cube.quaternion.copy(controller.quaternion);
@@ -82,7 +82,7 @@ function init(){
                 // light.castShadow = true; // enable shadow casting
         
     }
-=======
+
    // if(cube.visible) return; // avoid placing multiple cubes
     //cube.position.copy(controller.position);
   //  cube.quaternion.copy(controller.quaternion);
@@ -93,7 +93,6 @@ function init(){
          model.quaternion.copy(controller.quaternion);
         model.visible =true;
      }
->>>>>>> defdf975c9a2944f8d5d96aa0ad3e179eccc39e0
 
     });
 }

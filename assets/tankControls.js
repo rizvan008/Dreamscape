@@ -43,6 +43,7 @@ const tankControls = {
     if (tankControls.turningLeft) {
       tankControls.currentWheelAngle = Math.min(tankControls.currentWheelAngle + 0.05, tankControls.wheelMaxTurn); // limiting the wheel turn to certain limit
     } 
+    
     else if (tankControls.turningRight) {
       tankControls.currentWheelAngle = Math.max(tankControls.currentWheelAngle - 0.05, -tankControls.wheelMaxTurn);
     } 
