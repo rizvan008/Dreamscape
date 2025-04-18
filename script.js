@@ -2,26 +2,25 @@
 import { scene } from "./assets/scene.js";
 import { camera, debug_camera } from "./assets/camera.js";
 import { renderer } from "./assets/renderer.js";
-import animate , {display, displayC} from "./assets/animate.js";
+import animate , {display, screenDetails} from "./assets/animate.js";
 import tank ,{frontLeftTyre} from "./assets/tank.js";
 import { yard, containers, plane } from "./assets/containers.js";
 import { GridHelper,AxesHelper } from "./help-worker/helpers.js";
 import {gs_p} from "./assets/DeBug.js";
 import GSAP from "gsap";
 
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { injectSpeedInsights } from "@vercel/speed-insights";
-// injectSpeedInsights({
-//   projectId: "your-project-id",
-//   token
+// import { SpeedInsights } from "@vercel/speed-insights/next";
+import { injectSpeedInsights } from '@vercel/speed-insights';
+injectSpeedInsights();
 
 scene.add(camera, tank, yard, plane, AxesHelper, debug_camera);
-// debug_camera.position.set(10, 10, -10);
+debug_camera.position.set(-10, 10, -10);
 camera.position.set(10, 10, -10);
 // scene.add(GridHelper,);
 
 tank.position.set(0,1,-1)
-// camera.lookAt(tank.position);
+camera.lookAt(tank.position);
+debug_camera.lookAt(tank.position);
 
 // **enlarging size of objects */
 yard.scale.set(1, 2, 0.5);
@@ -50,11 +49,6 @@ console.log(containers[0].geometry);
 console.log(containers[0].material);
 console.log(tank);
 
-window.addEventListener("click",() =>console.log("keyValue :", displayC));
-
-camera.lookAt(frontLeftTyre);
-camera.lookAt(tank);
-// debug_camera.lookAt(tank);
 animate();
 // renderer.setAnimationLoop(); // this will call the animate function in a loop need test it with webXR
 

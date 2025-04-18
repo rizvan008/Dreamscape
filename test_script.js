@@ -11,10 +11,14 @@ animate();
 function init(){
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 100);
-    light = new THREE.DirectionalLight(0xffffff, 1);
-    sportlight = new THREE.SpotLight(0xffffff, 1);
-    pointlight = new THREE.PointLight(0xffffff, 1);
-    scene.add(camera,light);
+    pointLight = new THREE.PointLight('rgb(255, 255, 255)', 1, 50);
+    pointLight.position.set(0, 3, 0);
+    sportLight = new THREE.SportLight(0xffffff, 1, 60);
+    sportLight.position.set(1, 5, 1);
+    light = new THREE.DirectionalLight('white', 1);
+    light.position.set(0, 2, 0);
+    scene.add(camera, pointLight, sportLight, light);
+
     renderer = new THREE.WebGLRenderer({ antialias : true, alpha : true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.xr.enabled = true; // enable WebXR

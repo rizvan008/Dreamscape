@@ -8,7 +8,7 @@ import tank from "./tank.js";
 
 const time = new THREE.Clock();
 
-export const displayC = { scrollWidth: 0, scrollHeight: 0 };
+export const screenDetails = { scrollWidth: 0, scrollHeight: 0 };
 
 export let display = window.visualViewport;
 
@@ -21,24 +21,25 @@ visualViewport.onresize = ()=>{
     const width = visualViewport.width;
     const height = visualViewport.height;
     
-    // Update Three.js
+    // Update Three.js after window resize
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
+
     renderer.setSize(width, height);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-  displayC.scrollWidth = (document.body.scrollWidth);
-  displayC.scrollHeight = (document.body.scrollHeight);
-  displayC.clientWidth = (document.body.clientWidth);
-  displayC.clientHeight = (document.body.clientHeight);
-  displayC.scrollY = (window.scrollY);
-  displayC.scrollX= (window.scrollX);
-  displayC.screen = (window.screen);
-  displayC.innerHeight = (window.innerHeight);
-  displayC.innerWidth = (window.innerWidth);
-  displayC.visualScale = visualViewport.scale;
-  console.log('resized display: ', displayC);
-}, 100);
+  screenDetails.scrollWidth = (document.body.scrollWidth);
+  screenDetails.scrollHeight = (document.body.scrollHeight);
+  screenDetails.clientWidth = (document.body.clientWidth);
+  screenDetails.clientHeight = (document.body.clientHeight);
+  screenDetails.scrollY = (window.scrollY);
+  screenDetails.scrollX= (window.scrollX);
+  screenDetails.screen = (window.screen);
+  screenDetails.innerHeight = (window.innerHeight);
+  screenDetails.innerWidth = (window.innerWidth);
+  screenDetails.visualScale = visualViewport.scale;
+  console.log('resized display: ', screenDetails);
+}, 100); // time out given for smooth functioning in mobile devices and touch devices
 };
 
 const animate = () => {
@@ -50,6 +51,11 @@ const animate = () => {
   // renderer.render(scene, debug_camera);
   renderer.render(scene, camera);
   renderer.setAnimationLoop(animate) // test this for the animation loop
+  
+  // renderer.setAnimationLoop(() => {
+  //   renderer.render(scene, camera);
+  //   renderer.render(scene, debug_camera);
+  // });
 };
 
 export default animate
