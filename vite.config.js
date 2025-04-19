@@ -1,34 +1,13 @@
 // import { defineConfig } from 'vite';
-// export default defineConfig({
-//   server: {
-//     https: true,
-//     host: true
-//   }
-// })
-
 // import basicSsl from '@vitejs/plugin-basic-ssl';
 
 // export default defineConfig({
-  // plugins: [basicSsl()], // Enable HTTPS locally
+//   plugins: [basicSsl()], // Enable HTTPS locally
 //   server: {
 //     https: true, // Force HTTPS
 //     host: true,  // Allow LAN access (for mobile testing)
 //   }
 // });
-
-// import { defineConfig } from 'vite';
-// import fs from 'fs';
-
-// export default defineConfig({
-//   server: {
-//     https: {
-//       key: fs.readFileSync('localhost-key.pem'),
-//       cert: fs.readFileSync('localhost.pem'),
-//     },
-//     host: true, // Enable LAN access for mobile testing
-//   }
-// });
-
 
 // import { defineConfig } from 'vite'
 // import { readFileSync } from 'node:fs'
@@ -59,3 +38,16 @@
 //     host: true
 //   }
 // })
+
+// import { defineConfig } from 'vite';
+// import fs from 'fs';
+
+// export default defineConfig({
+//   server: {
+//     https: {
+//       key: fs.readFileSync('localhost-key.pem'),
+//       cert: fs.readFileSync('localhost.pem'),
+//     },
+//     host: true, // Enable LAN access for mobile testing
+//   }
+// });

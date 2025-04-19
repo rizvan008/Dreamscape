@@ -49,13 +49,11 @@ if (backward) {
   let angularMoment =    turnRadius * Math.tan(steeringAngle)
 
 if (forward && (steerLeft || steerRight)) {
-  // Rotate the tank body
   tank.rotation.y += angularMoment ; // (Ackermann steering)
-  // tank.rotation.y += turnradius * steeringAngle ; // Rotate the tank body based on the steering angle 
+  // tank.rotation.y += turnradius * steeringAngle ; // Rotate the tank body based on the steering angle -- Deprecated
 }
   
 if (backward && (steerLeft || steerRight)) {
-  // Rotate the tank body based on the steering angle
   tank.rotation.y -=  angularMoment; // Rotate the tank body *** check if need Math.Sin(steerSpeed / Math.tan(steeringAngle)) or not
   // console.log('tank body rotates: B', tank.rotation.y);
 }
@@ -130,7 +128,17 @@ document.addEventListener("keyup", (event) => {
 });
 
 //** For testing purpose */
-  let test;
+const acceleration = 0.01; // Acceleration rate
+const deceleration = 0.02; // Deceleration rate
+
+// Rotate tank body around turn center
+// Rotate all wheels proportionally to movement
+// Outer wheels travel faster than inner wheels 
+
+//** initial speed is 0 then increment or decrement the speed by the acceleration or deceleration rate
+// max speed is 1.57 (90 degrees in radians) */
+
+let test;
 function increment(currentValue, limit, step, callback) {
   let newValue = Math.min(currentValue + step, limit);
   // if (callback) {
@@ -146,15 +154,3 @@ function decrement (currentValue, limit, step, callback) {
   }
   return start;
 }
-
-  const acceleration = 0.01; // Acceleration rate
-  const deceleration = 0.02; // Deceleration rate
-
-// Rotate tank body around turn center
-// Rotate all wheels proportionally to movement
-// Outer wheels travel faster than inner wheels
-
-
-// In your controls:
-//** initial speed is 0 then increment or decrement the speed by the acceleration or deceleration rate
- // max speed is 1.57 (90 degrees in radians) */
