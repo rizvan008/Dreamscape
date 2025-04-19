@@ -9,7 +9,6 @@ import { GridHelper,AxesHelper } from "./help-worker/helpers.js";
 import {gs_p} from "./assets/DeBug.js";
 import GSAP from "gsap";
 
-// import { SpeedInsights } from "@vercel/speed-insights/next";
 import { injectSpeedInsights } from '@vercel/speed-insights';
 injectSpeedInsights();
 
@@ -20,6 +19,7 @@ camera.position.set(10, 10, -10);
 
 tank.position.set(0,1,-1)
 camera.lookAt(tank.position);
+camera.lookAt(frontLeftTyre.position);
 debug_camera.lookAt(tank.position);
 
 // **enlarging size of objects */

@@ -80,7 +80,7 @@ const rearRightTyre =createTyre(
 );
 rearRightTyre.name = "Rear Right Tyre";
 
-const rearLeftTyre =createTyre(
+export const rearLeftTyre =createTyre(
   car_body.x - (car_body.width/2 + 0.17),
   car_body.y - car_body.height/2,
   car_body.z + (car_body.depth/2 * 0.5)
