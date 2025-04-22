@@ -5,6 +5,7 @@ import { renderer } from "./assets/renderer.js";
 import animate , {display, screenDetails} from "./assets/animate.js";
 import tank ,{frontLeftTyre} from "./assets/tank.js";
 import { yard, containers, plane } from "./assets/containers.js";
+import { lifter } from "./assets/lift.js";
 import { GridHelper,AxesHelper } from "./help-worker/helpers.js";
 import {gs_p} from "./assets/DeBug.js";
 import GSAP from "gsap";
@@ -12,14 +13,14 @@ import GSAP from "gsap";
 import { injectSpeedInsights } from '@vercel/speed-insights';
 injectSpeedInsights();
 
-scene.add(camera, tank, yard, plane, AxesHelper, debug_camera);
+scene.add(tank, lifter, yard, plane, AxesHelper, camera, debug_camera, );
 debug_camera.position.set(-10, 10, -10);
 camera.position.set(10, 10, -10);
 // scene.add(GridHelper,);
 
-tank.position.set(0,1,-1)
+// tank.position.set(0,1,-1)
 camera.lookAt(tank.position);
-camera.lookAt(frontLeftTyre.position);
+camera.lookAt(lifter);
 debug_camera.lookAt(tank.position);
 
 // **enlarging size of objects */

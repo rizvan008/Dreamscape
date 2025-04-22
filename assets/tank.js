@@ -8,29 +8,29 @@ tank.name = "tank";
 // **creating Geometry and material for items */
 const carShape = new THREE.BoxGeometry(1, 1, 3);
 const carCover = new THREE.MeshBasicMaterial();
-const tyreShape = new THREE.CylinderGeometry(0.5, 0.5, 0.35, 32);
+const tyreShape = new THREE.CylinderGeometry(0.5, 0.5, 0.35, 25);
 const tyreCover = new THREE.MeshBasicMaterial({ color: "black" });
 const grillShape = new THREE.CapsuleGeometry(0.05, 0.7);
 const grillCover = new THREE.MeshBasicMaterial({ color: "black" });
 
 // **changing cars color */
 carCover.color = new THREE.Color("rgb(240, 224, 5)");
-// carCover.color = new THREE.Color('hsl(263, 83.50%, 47.60%)'); //**color manipulation options */
+// carCover.color = new THREE.Color('hsl(263, 83.50%, 49.60%)'); //**color manipulation options */
 
 const car = new THREE.Mesh(carShape, carCover);
-// car.position.set( car.geometry.parameters.width/2, 0, 0 ) // moving its geometric center to end
+car.position.set( 0, 0, -car.geometry.parameters.depth/2 * 0.5 ) // moving its geometric center to rear tyre position 
 car.name = "tank-body";
 
 //**create tyres & numbering it */
 const tyres = [];
 
-const createTyre = (x = 0, y = 0, z = 0) => {
-  const tyre = new THREE.Mesh(tyreShape, tyreCover);
-  tyre.name = `tyre${tyres.length + 1}`;
-  tyre.position.set(x, y, z);
-  tyre.rotation.z = Math.PI / 2;// rotting the tyre to 90 degree n z-axis
-  tyres.push(tyre);
-  return tyre;
+const createRoundShape = (x = 0, y = 0, z = 0) => {
+  const RoundShape = new THREE.Mesh(tyreShape, tyreCover.clone());
+  RoundShape.name = `tyre${tyres.length + 1}`;
+  RoundShape.position.set(x, y, z);
+  RoundShape.rotation.z = Math.PI / 2;// rotting the tyre to 90 degree n z-axis
+  tyres.push(RoundShape);
+  return RoundShape;
 };
 
 //**create front grills & numbering it */
@@ -52,60 +52,64 @@ const car_body = {
   z: car.position.z,
 };
 
+ const tyrePositionX = (car_body.width/2 + 0.17); // car.geometry.parameters.width / 2 + 0.17 // offset from the car body
+ const tyrePositionY = (car_body.height/2);      
+ const tyrePositionZ = (car_body.depth/2 * 0.5); // offset is half of the half car body
+const headlightPositionX = 0.3;
+const headlightPositionY = 0.3;
+const headlightPositionZ = 1.47; 
+
 //**create head lights */
-const rightHeadLight = createTyre(
-  car_body.x + 0.3,
-  car_body.y + 0.3,
-  car_body.z - 1.47
+const rightHeadLight = createRoundShape(
+  car_body.x + headlightPositionX,
+  car_body.y + headlightPositionY,
+  car_body.z - headlightPositionZ
 );
 rightHeadLight.name = "Right Head Light";
-rightHeadLight.color = new THREE.Color("rgb(255, 255, 255)");
+rightHeadLight.material.color = new THREE.Color("rgb(221, 248, 248)");
 
-const leftHeadLight = createTyre(
-  car_body.x - 0.3,
-  car_body.y + 0.3,
-  car_body.z - 1.47
+const leftHeadLight = createRoundShape(
+  car_body.x - headlightPositionX,
+  car_body.y + headlightPositionY,
+  car_body.z - headlightPositionZ
 );
 leftHeadLight.name = "Left Head Light";
-leftHeadLight.color = new THREE.Color("rgb(255, 255, 255)");
-
-
-
+leftHeadLight.material.color = new THREE.Color("rgb(221, 248, 248)");
 
 //
-const rearRightTyre =createTyre(
-  car_body.x + (car_body.width/2 + 0.17) , // car.geometry.parameters.width / 2 + 0.1 // offset from the car body
-  car_body.y - (car_body.height/2),
-  car_body.z + (car_body.depth/2 * 0.5) // car.geometry.parameters.depth / 2 * 0.5 
+const rearRightTyre =createRoundShape(
+  car_body.x + tyrePositionX , 
+  car_body.y - tyrePositionY,
+  car_body.z + tyrePositionZ 
 );
 rearRightTyre.name = "Rear Right Tyre";
 
-export const rearLeftTyre =createTyre(
-  car_body.x - (car_body.width/2 + 0.17),
-  car_body.y - car_body.height/2,
-  car_body.z + (car_body.depth/2 * 0.5)
+export const rearLeftTyre =createRoundShape(
+  car_body.x - tyrePositionX,
+  car_body.y - tyrePositionY,
+  car_body.z + tyrePositionZ
 );
 rearLeftTyre.name = "Rear Left Tyre";
 
-export const frontLeftTyre =createTyre(
-  car_body.x - (car_body.width/2 + 0.17),
-  car_body.y - car_body.height/2,
-  car_body.z - (car_body.depth/2 * 0.5) // offset from the car body
+export const frontLeftTyre =createRoundShape(
+  car_body.x - tyrePositionX,
+  car_body.y - tyrePositionY,
+  car_body.z - tyrePositionZ 
 );
 frontLeftTyre.name = "Front Left Tyre";
 
 export const frontRightTyre =
-createTyre(
-  car_body.x + (car_body.width/2 + 0.17),
-  car_body.y - car_body.height/2,
-  car_body.z - (car_body.depth/2 * 0.5)
+createRoundShape(
+  car_body.x + tyrePositionX,
+  car_body.y - tyrePositionY,
+  car_body.z - tyrePositionZ
 );
 frontRightTyre.name = "Front Right Tyre";
 
 //**back Tyre  */
-const backTyre = createTyre(
+const backTyre = createRoundShape(
   car_body.x - 0.17,
-  car_body.y + (car_body.height/2 - 0.17),
+  car_body.y + (tyrePositionY - 0.17),
   car_body.z + (car_body.depth/2 + 0.2) // offset is tiers diameter
 );
 backTyre.name = "Back Tyre";
@@ -128,19 +132,20 @@ frontGrill.children.map( (grill, indx) => {grill.position.x = indx * -0.15}) // 
 
 tank.add(
   car,
-  frontLeftTyre,
-  rearLeftTyre,
-  frontRightTyre,
-  rearRightTyre,
-  backTyre,
   frontGrill,
   rightHeadLight,
-  leftHeadLight
+  leftHeadLight, 
+  frontLeftTyre,
+  frontRightTyre,
+  rearLeftTyre,
+  rearRightTyre,
+  backTyre,
 );
 
+tank.position.y = 1; // moving the tank up to the ground level
 frontLeftTyre.add(new THREE.AxesHelper(3));
 frontRightTyre.add(new THREE.AxesHelper(3));
-// backTyre.add(new THREE.AxesHelper(3));
+tank.add(new THREE.AxesHelper(3));
 // frontGrill.add(new THREE.AxesHelper(3));
 
 export default tank;
