@@ -11,16 +11,16 @@ import GSAP from "gsap";
 
 import { injectSpeedInsights } from '@vercel/speed-insights';
 injectSpeedInsights();
-
-scene.add(camera, tank, yard, plane, AxesHelper, debug_camera);
+try{
+scene.add(tank, lifter, yard, ground, AxesHelper, camera, debug_camera, ); // do not change oder of adding the objects to the scene, it will affect the position of the objects in the scene
 debug_camera.position.set(-10, 10, -10);
 camera.position.set(10, 10, -10);
-// scene.add(GridHelper,);
+scene.add(GridHelper,);
 
-tank.position.set(0,1,-1)
-camera.lookAt(tank.position);
-camera.lookAt(frontLeftTyre.position);
-debug_camera.lookAt(tank.position);
+// tank.position.set(0,1,-1)
+// camera.lookAt(tank.position);
+// camera.lookAt(lifter);
+// debug_camera.lookAt(tank.position);
 
 // **enlarging size of objects */
 yard.scale.set(1, 2, 0.5);
@@ -51,4 +51,7 @@ console.log(tank);
 
 animate();
 // renderer.setAnimationLoop(); // this will call the animate function in a loop need test it with webXR
-
+}
+catch (error) {
+  console.error('error in main.js : ', error);
+}

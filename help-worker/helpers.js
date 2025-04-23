@@ -1,5 +1,5 @@
 import * as THREE from "three";
-
+import {ground} from "../assets/containers.js";
 // export const CameraHelper = new THREE.CameraHelper( camera name );//test this
 function createName(item) {
   return item.name = `${item.type}`;
@@ -8,7 +8,7 @@ export const AxesHelper = new THREE.AxesHelper(10);
 createName(AxesHelper);
 export const GridHelper = new THREE.GridHelper(10, 10);
 createName(GridHelper);
-export const PlaneHelper = new THREE.PlaneHelper(10, 10);
+export const PlaneHelper = new THREE.PlaneHelper(ground, 1, 0xffff00); //test this
 createName(PlaneHelper);
 // export const BoxHelper  = new THREE.BoxHelper(10, 10, 10); //test this
 
