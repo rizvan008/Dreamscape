@@ -1,13 +1,36 @@
-// import { defineConfig } from 'vite';
-// import basicSsl from '@vitejs/plugin-basic-ssl';
+import { defineConfig } from 'vite';
+import restart from 'vite-plugin-restart'
+import basicSsl from '@vitejs/plugin-basic-ssl';
 
-// export default defineConfig({
-//   plugins: [basicSsl()], // Enable HTTPS locally
-//   server: {
-//     https: true, // Force HTTPS
-//     host: true,  // Allow LAN access (for mobile testing)
-//   }
-// });
+export default defineConfig({
+    root: 'src/', // Sources files (typically where index.html is)
+    publicDir: '../static/', // Path from "root" to static assets (files that are served as they are)
+    server:
+    {
+            // Enable HTTPS locally
+        https: true, // Force HTTPS
+        host: true, // Open to local network and display URL
+        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env) // Open if it's not a CodeSandbox
+    },
+    build:
+    {
+        outDir: '../dist', // Output in the dist/ folder
+        emptyOutDir: true, // Empty the folder first
+        sourcemap: true // Add sourcemap
+    },
+    plugins:
+    [
+        basicSsl({
+            /** name of certification */
+            name: 'Local certification',
+            /** custom trust domains */
+            domains: ['*.custom.com'],
+            /** custom certification directory */
+            certDir: '/Users/.../.devServer/cert',
+          }),
+        restart({ restart: [ '../static/**', ] }) // Restart server on static file change
+    ],
+});
 
 // import { defineConfig } from 'vite'
 // import { readFileSync } from 'node:fs'
@@ -32,8 +55,10 @@
 // export default defineConfig({
 //   server: {
 //     https: {
-//       key: readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
-//       cert: readFileSync(path.resolve(__dirname, 'localhost.pem')),
+//    //   key: readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
+//    //  cert: readFileSync(path.resolve(__dirname, 'localhost.pem')),
+//       key: readFileSync(path.resolve(devServer\cert, 'localhost-key.pem')),
+//       cert: readFileSync(path.resolve(devServer\cert, 'localhost.pem')),
 //     },
 //     host: true
 //   }

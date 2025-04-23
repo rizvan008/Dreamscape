@@ -2,11 +2,8 @@ node_modules
 dist
 localhost-key.pem
 localhost.pem
-vite.config.js
-<<<<<<< HEAD
-vite.config
-=======
->>>>>>> defdf975c9a2944f8d5d96aa0ad3e179eccc39e0
 
+test_index.html
+#test_script.js
 # assets/**/src/*
 # assets/**/texture/*

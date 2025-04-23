@@ -1,10 +1,10 @@
-// import * as THREE from "./node_modules/three/build/three.module";
 import * as THREE from 'three' ;
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 // import {ARButton} from 'three/examples/jsm/webxr/ARButton.js';
 import {ARButton} from "./node_modules/three/examples/jsm/webxr/ARButton.js";
-let camera, sportlight, pointlight, light, scene, renderer;
-let controller;
+import { XRButton } from 'three/examples/jsm/Addons.js';
+let camera, sportLight, pointLight, light, scene, renderer;
+
 init();
 animate();
 
@@ -30,6 +30,7 @@ function init(){
     
     //add AR Button for mobile
     document.body.appendChild(ARButton.createButton(renderer, {requiredFeatures : ['hit-test']}));
+    document.body.appendChild(XRButton.createButton(renderer,{}));
     
     //add 3D object
     const geometry = new THREE.BoxGeometry(0.1, 0.1, 0.1); 
@@ -46,8 +47,8 @@ function init(){
     let model;
 
     loader.load(
-        'assets/DamagedHelmet.glb',
-        // 'assets/LoadingSpinner.glb',
+        '../static/DamagedHelmet.glb',
+        // '../static/LoadingSpinner.glb',
         (gltf) => {
             model = gltf.scene;
             model.scale.set(0.1, 0.1, 0.1);
@@ -63,7 +64,7 @@ function init(){
     )
     
     // tap to place integration
-    controller = renderer.xr.getController(0);
+    let controller = renderer.xr.getController(0);
     controller.addEventListener('select', (e) => {
         // if(cube.visible) return; // avoid placing multiple cubes
         // cube.position.copy(controller.position);
@@ -75,17 +76,19 @@ function init(){
             model.quaternion.copy(controller.quaternion);
             model.visible =true;
             light.position.copy(model.position).add(new THREE.Vector3(3, 3, 3));
-            sportlight.position.add(model.position).add(new THREE.Vector3(-1, 1, 0));
-            // sportlight.target = model; // set light target to the model
-            sportlight.castShadow = true; // enable shadow casting
-            let sportlight1 = sportlight.clone().position.copy(model.position).add(new THREE.Vector3(0, 2, 0));
-            let sportlight2 = sportlight.clone().position.copy(model.position).add(new THREE.Vector3(0, -2, 0));
-            pointlight.position.clone(model.position).add(new THREE.Vector3(0, 2, 0));
-            light.target = model; // set light target to the model
+            sportLight.position.add(model.position).add(new THREE.Vector3(-1, 1, 0));
+            // sportLight.target = model; // set light target to the model
+            sportLight.castShadow = true; // enable shadow casting
+            let sportLight1 = sportLight.clone();
+            sportLight1.position.copy(model.position).add(new THREE.Vector3(0, 2, 0));
+            let sportLight2 = sportLight.clone();
+            sportLight2.position.copy(model.position).add(new THREE.Vector3(0, -2, 0));
+            sportLight2.target = model; // set light target to the model
+            sportLight2.castShadow = true; // enable shadow casting
+            pointLight.position.clone(model.position).add(new THREE.Vector3(0, 2, 0));
+            scene.add(sportLight2.target); // add light target to the scene
+            scene.add(sportLight, sportLight1, sportLight2); // add light to the scene
             light.castShadow = true; // enable shadow casting
-            scene.add(light.target); // add light target to the scene
-            scene.add(sportlight, sportlight1, sportlight2); // add light to the scene
-            // light.castShadow = true; // enable shadow casting
         
     }
 
