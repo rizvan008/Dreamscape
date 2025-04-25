@@ -5,7 +5,7 @@ import  tank  from "./tank.js";
 console.log(' this lift js  worked ');
 
 // lift module need to replace with Gltb file
-export const lifter = new THREE.Group();
+const lifter = new THREE.Group();
 lifter.name = "Lifter Group";
 
 //**building module */
@@ -38,3 +38,5 @@ lifter.add(liftModule, )//rightLift, leftLift, liftHandle);
 // lifter.y = (rightLift.geometry.parameters.height/2 + car_body.height/2); 
 // lifter.z = -5; 
 // lifter.position.set(lifter.x, lifter.y, lifter.z);
+
+export default lifter;
