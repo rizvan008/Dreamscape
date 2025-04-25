@@ -2,7 +2,7 @@ node_modules
 dist
 localhost-key.pem
 localhost.pem
-
+devServer
 test_index.html
 #test_script.js
 # assets/**/src/*
