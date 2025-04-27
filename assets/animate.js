@@ -1,10 +1,11 @@
-import { renderer } from "./renderer.js";
+import { renderer, } from "./renderer.js";
+import { renderFlag} from '../src/script.js'
+
 import { camera, debug_camera } from "./camera.js";
 import { scene } from "./scene.js";
-import { control_orbit } from "./cameraControls.js";
+import { control_CamerasOrbit } from "./cameraControls.js";
 import { startMovement } from "./tank-Controls.js";
 import * as THREE from "three"
-import tank from "./tank.js";
 
 const time = new THREE.Clock();
 
@@ -46,16 +47,16 @@ const animate = () => {
   const seconds = time.getElapsedTime();
   // console.log('seconds: ', seconds);
   startMovement();
+  control_CamerasOrbit.update();
+
   // window.requestAnimationFrame(animate);
-  control_orbit.update();
-  // renderer.render(scene, debug_camera);
-  renderer.render(scene, camera);
+  if (renderFlag){
+        renderer.render(scene, debug_camera);
+  }else {
+    renderer.render(scene, camera);
+  } 
   renderer.setAnimationLoop(animate) // test this for the animation loop
-  
-  // renderer.setAnimationLoop(() => {
-  //   renderer.render(scene, camera);
-  //   renderer.render(scene, debug_camera);
-  // });
+
 };
 
 export default animate

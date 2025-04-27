@@ -7,9 +7,11 @@ const tank = new THREE.Group();
 tank.name = "tank";
 
 // **creating Geometry and material for items */
+let cylinderDiameter = 0.5; // diameter of the cylinder
+const cylinderHeight = 0.35; // height of the cylinder
 const carShape = new THREE.BoxGeometry(1, 1, 3);
 const carCover = new THREE.MeshBasicMaterial();
-const tyreShape = new THREE.CylinderGeometry(0.5, 0.5, 0.35, 25);
+const tyreShape = new THREE.CylinderGeometry(cylinderDiameter, cylinderDiameter, cylinderHeight, 25);
 const tyreCover = new THREE.MeshBasicMaterial({ color: "black" });
 const grillShape = new THREE.CapsuleGeometry(0.05, 0.7);
 const grillCover = new THREE.MeshBasicMaterial({ color: "black" });
@@ -19,14 +21,14 @@ carCover.color = new THREE.Color("rgb(240, 224, 5)");
 // carCover.color = new THREE.Color('hsl(263, 83.50%, 49.60%)'); //**color manipulation options */
 
 const car = new THREE.Mesh(carShape, carCover);
-car.position.set( 0, 0, -car.geometry.parameters.depth/2 * 0.5 ) // moving its geometric center to rear tyre position 
+car.position.set( 0, 1, -car.geometry.parameters.depth/2 * 0.5 ) // moving its geometric center to rear tyre position 
 car.name = "tank-body";
 //** creating windShield */
 const windShield = new THREE.Mesh( new THREE.PlaneGeometry( car.geometry.parameters.width, 0.5), carCover.clone());
 windShield.name = 'wind Shield';
 windShield.material.color = new THREE.Color('white');
 windShield.rotateX(0.01744 * 20)  // degree to radiant 
-windShield.position.set(0, car.geometry.parameters.height/2, - (car.geometry.parameters.depth *.5 + 0.2));
+windShield.position.set(0, car.geometry.parameters.height/2 + 0.23, - (car.geometry.parameters.depth *.5 + 0.2));
 windShield.material.side = THREE.DoubleSide; // make the wind shield visible from both sides
 windShield.material.transparent = true;
 windShield.material.opacity = 0.6 ; 
@@ -67,7 +69,7 @@ car.userData = {
   z: car.position.z,
 };
 
- const tyrePositionX = (car.userData.width/2 + 0.17); // car.geometry.parameters.width / 2 + 0.17 // offset from the car body
+ const tyrePositionX = (car.userData.width/2 + cylinderHeight/2); // car.geometry.parameters.width / 2 + 0.175 // offset is half of the cylinder height/depth
  const tyrePositionY = (car.userData.height/2);      
  const tyrePositionZ = (car.userData.depth/2 * 0.5); // offset is half of the half car body
  const backTyreOffset = 0.17; // same offset given to x and y axis of the back tyre
@@ -94,7 +96,7 @@ const leftHeadLight = createRoundShape(
 leftHeadLight.name = "Left Head Light";
 leftHeadLight.material.color = headLightColor
 
-//
+//** Creating Tyres */
 const rearRightTyre =createRoundShape(
   car.userData.x + tyrePositionX , 
   car.userData.y - tyrePositionY,
@@ -128,7 +130,7 @@ frontRightTyre.name = "Front Right Tyre";
 const backTyre = createRoundShape(
   car.userData.x - backTyreOffset,
   car.userData.y + (tyrePositionY - backTyreOffset),
-  car.userData.z + (car.userData.depth/2 + headlightSize) // offset tiers depth / diameter
+  car.userData.z + (car.userData.depth/2 + cylinderHeight/2) // offset tiers depth / diameter
 );
 backTyre.name = "Back Tyre";
 
@@ -161,10 +163,10 @@ tank.add(
   windShield,
 );
 
-tank.position.y = 1; // moving the tank up to the ground level
-frontLeftTyre.add(new THREE.AxesHelper(3));
-frontRightTyre.add(new THREE.AxesHelper(3));
-tank.add(new THREE.AxesHelper(3));
+// tank.position.y = 1; // moving the tank up to the ground level
+// frontLeftTyre.add(new THREE.AxesHelper(3));
+// frontRightTyre.add(new THREE.AxesHelper(3));
+// tank.add(new THREE.AxesHelper(3));
 // frontGrill.add(new THREE.AxesHelper(3));
 
 export default tank;

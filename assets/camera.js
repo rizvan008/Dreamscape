@@ -6,17 +6,21 @@ export const camera = new THREE.PerspectiveCamera(
   60,
   size.width / size.height,//size from render.js
   1,
-  100
+  300
 );
 
 camera.name = "Perspective-camera";
 
-export const debug_camera = new THREE.OrthographicCamera(
-  80, 80, 50, 50,
+export const debug_camera = new THREE.PerspectiveCamera(
+  60,
+  size.width / size.height,//size from render.js
   1,
-  100
+  300
 );
+// export const debug_camera = new THREE.OrthographicCamera(
+//   -30, 30, 15, -15,
+//   1,
+//   100
+// );
 
-debug_camera.name = "OrthographicCamera-debug_camera";
-// debug_camera.position.set(camera.position.clone())
-debug_camera.lookAt(0,0,0)
+debug_camera.name = "Debuging-drag_camera";
