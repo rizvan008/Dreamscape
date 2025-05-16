@@ -42,7 +42,7 @@ function init(){
     // light.castShadow = true; // enable shadow casting
 
 
-    // load gtlb 3d files
+    // load glb 3d files
     const loader = new GLTFLoader();
     let model;
 

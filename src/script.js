@@ -49,12 +49,13 @@ debug_camera.lookAt(lifter.position);
 // console.log(yard.position.distanceTo(camera.position));
 
 //* * calling the function to start the movement of the tank /
-document.onkeydown = ((event) => console.log('On key press : ', (event.code)));
-document.addEventListener( 'keypress', (e) => {
-  if (e.key === 'd' && !renderFlag){
+// document.onkeydown = ((event) => console.log('On key press : ', (event.code)));
+// document.addEventListener( 'keypress', (e) => {
+  document.onkeydown = ( 'keypress', (e) => {
+  if (e.key === 'c' && !renderFlag){
       renderFlag = true;
       console.log('renderFlag: ', renderFlag);}
-  else if (e.key === 'd' && renderFlag){
+  else if (e.key === 'c' && renderFlag){
       renderFlag = false;
       console.log('renderFlag: ', renderFlag);}
   if (e.key === 'r'){

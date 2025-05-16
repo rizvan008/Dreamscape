@@ -32,7 +32,7 @@ export default defineConfig({
     ],
 });
 
-// import { defineConfig } from 'vite'
+
 // import { readFileSync } from 'node:fs'
 
 // export default defineConfig({
@@ -48,7 +48,6 @@ export default defineConfig({
 //   }
 // })
 
-// import { defineConfig } from 'vite'
 // import { readFileSync } from 'node:fs'
 // import path from 'node:path'
 
@@ -64,7 +63,6 @@ export default defineConfig({
 //   }
 // })
 
-// import { defineConfig } from 'vite';
 // import fs from 'fs';
 
 // export default defineConfig({
