@@ -27,7 +27,6 @@ const tankFolder = DAT.addFolder('Tank items')
 
 const windShieldFolder = tankFolder.addFolder('Wind Shield')
   tankFolder.add(frontRightTyre.material, 'wireframe').name('Tyre Wireframe')
-  windShieldFolder.add(tank.children[tank.children.length - 1].material, 'side').min(0).max(2).step(1).name('Shield visibility')
   windShieldFolder.add(tank.children[tank.children.length - 1].position, 'y').min(0).max(10).step(0.01)
   windShieldFolder.add(tank.children[tank.children.length - 1].position, 'x').min(0).max(10).step(0.01)
   // lifterFolder.open();

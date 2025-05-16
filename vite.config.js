@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import restart from 'vite-plugin-restart'
-import basicSsl from '@vitejs/plugin-basic-ssl';
+// import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export default defineConfig({
     root: 'src/', // Sources files (typically where index.html is)
@@ -20,14 +20,14 @@ export default defineConfig({
     },
     plugins:
     [
-        basicSsl({
-            /** name of certification */
-            name: 'Local certification',
-            /** custom trust domains */
-            domains: ['*.custom.com'],
-            /** custom certification directory */
-            certDir: '/Users/.../.devServer/cert',
-          }),
+        // basicSsl({
+        //     /** name of certification */
+        //     name: 'Local certification',
+        //     /** custom trust domains */
+        //     domains: ['*.custom.com'],
+        //     /** custom certification directory */
+        //     certDir: '/Users/.../.devServer/cert',
+        //   }),
         restart({ restart: [ '../static/**', ] }) // Restart server on static file change
     ],
 });

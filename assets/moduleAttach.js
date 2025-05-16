@@ -17,11 +17,12 @@ export function moveTillAttach(car, module){
     const carPosition = car.position.clone();
     const modulePosition = module.position.clone();
     if( carPosition.equals(modulePosition)) { // validate whether car and module are in same position
-        module.clear();
+        // module.clear();
         // module.parent.clear();
         module.parent.remove(scene.getObjectByName('GridHelper'));
         // module.parent.removeFromParent();
-        module.parent.add(scene.getObjectByName('tank'));
+        // module.parent.removeFromParent();
+        (scene.getObjectByName('tank').add(module));
         console.log('movetill part :',scene);
     }else {
         const distance = (carPosition.distanceTo(modulePosition));
@@ -39,7 +40,7 @@ function moveTo_target(car, module, direction, miniSpeedToMove) {
     if(miniSpeedToMove <= 0) {
         // module.parent.clear();
         // module.parent.remove(scene);
-        module.parent.removeFromParent();
+        // module.parent.removeFromParent();
         // module.parent.add(car);
         console.log('move target part : ', scene);
 
