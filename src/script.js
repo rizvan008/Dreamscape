@@ -7,7 +7,7 @@ import { renderer } from "../assets/renderer.js";
 import animate , {display, screenDetails} from "../assets/animate.js";
 import tank ,{frontLeftTyre} from "../assets/tank.js";
 import lifter from '../assets/liftModule.js'
-import { moveTill } from "../assets/moduleAttach.js";
+import { moveTillAttach } from "../assets/moduleAttach.js";
 import { yard, containers, ground } from "../assets/containers.js";
 // import { GridHelper, AxesHelper,  } from "../help-worker/helpers.js";
 import { GridHelper, AxesHelper, initCameraHelper, cameraHelper, cameraHelp } from "../help-worker/helpers.js";
@@ -59,7 +59,7 @@ debug_camera.lookAt(lifter.position);
       renderFlag = false;
       console.log('renderFlag: ', renderFlag);}
   if (e.key === 'r'){
-    moveTill(tank, lifter); // this will move the tank to the lift module position
+    moveTillAttach(tank, lifter); // this will move the tank to the lift module position
     ;}
 });
 
