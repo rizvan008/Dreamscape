@@ -37,6 +37,6 @@ lifter.add(liftModule, )//rightLift, leftLift, liftHandle);
 // lifter.position.set(lifter.x, lifter.y, lifter.z);
 
 lifter.userData.attachable = true;
-lifter.userData.distance = lifter.position.length();
+lifter.userData.distance = lifter.position.length(); // distance from world origin
 
 export default lifter;

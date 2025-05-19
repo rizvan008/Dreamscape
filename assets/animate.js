@@ -4,7 +4,9 @@ import { renderFlag} from '../src/script.js'
 import { camera, debug_camera } from "./camera.js";
 import { scene } from "./scene.js";
 import { control_CamerasOrbit } from "./cameraControls.js";
-import { startMovement } from "./tank-Controls.js";
+import moduleAttach from "../assets/moduleAttach.js";
+
+import { startMovement } from "./tank-controls.js";
 import * as THREE from "three"
 
 const time = new THREE.Clock();
@@ -46,6 +48,8 @@ visualViewport.onresize = ()=>{
 const animate = () => {
   const seconds = time.getElapsedTime();
   // console.log('seconds: ', seconds);
+  moduleAttach ();
+
   startMovement();
   control_CamerasOrbit.update();
 

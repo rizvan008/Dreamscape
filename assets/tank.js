@@ -28,7 +28,7 @@ const windShield = new THREE.Mesh( new THREE.PlaneGeometry( car.geometry.paramet
 windShield.name = 'wind Shield';
 windShield.material.color = new THREE.Color('white');
 windShield.rotateX(0.01744 * 20)  // degree to radiant 
-windShield.position.set(0, car.geometry.parameters.height/2 + 0.23, - (car.geometry.parameters.depth *.5 + 0.2));
+windShield.position.set(0, car.geometry.parameters.height/2 + 1.2, - (car.geometry.parameters.depth *.5 + 0.2));
 windShield.material.side = THREE.DoubleSide; // make the wind shield visible from both sides
 windShield.material.transparent = true;
 windShield.material.opacity = 0.6 ; 

@@ -25,7 +25,7 @@ camera.position.set(10, 10, -10);
 //** camera helpers */
 initCameraHelper(camera) // this will resolve ReferenceError: Cannot access 'camera' before initialization
 const debug_cameraHelp = cameraHelper(debug_camera); // "Recommended" way to solve error :- Cannot access 'camera' before initialization
-scene.add(GridHelper, cameraHelp, debug_cameraHelp,);
+scene.add(cameraHelp, debug_cameraHelp,);
 
 
 // camera.lookAt(tank.position);
@@ -58,9 +58,7 @@ debug_camera.lookAt(lifter.position);
   else if (e.key === 'c' && renderFlag){
       renderFlag = false;
       console.log('renderFlag: ', renderFlag);}
-  if (e.key === 'r'){
-    moveTillAttach(tank, lifter); // this will move the tank to the lift module position
-    ;}
+
 });
 
 console.log(scene);
